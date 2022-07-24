@@ -4,6 +4,7 @@ import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
+import {BASE_URL} from "../utils/Constants"
 
 
 interface Props {
@@ -36,7 +37,7 @@ const SlotForm:React.FC<Props> = ({initialNotes, initialScheduledAt, initialVenu
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8000/emp/venues")
+        axios.get(`${BASE_URL}/emp/venues`)
         .then((result)=>{
             console.log(result)
             setVenueList(result.data)

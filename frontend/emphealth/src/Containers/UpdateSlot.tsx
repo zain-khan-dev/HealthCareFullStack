@@ -5,6 +5,7 @@ import { SlotSchema, Venue } from "../utils/schema"
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import SlotForm from "../Components/SlotForm"
+import { BASE_URL } from "../utils/Constants"
 
 const UpdateSlot = () => {
 
@@ -31,7 +32,7 @@ const UpdateSlot = () => {
         console.log(slot.scheduledAt)
         return (
             <SlotForm 
-            url={`http://localhost:8000/emp/slot/${slotId}`}
+            url={`${BASE_URL}/emp/slot/${slotId}`}
             type="UPDATE"
             initialVenue={slot.venueId.id} initialScheduledAt={slot.scheduledAt} initialNotes={slot.notes?slot.notes:""}   />
         )

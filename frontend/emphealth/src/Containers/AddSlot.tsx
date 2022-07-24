@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import { useNavigate } from "react-router-dom"
 import SlotForm from "../Components/SlotForm"
+import { BASE_URL } from "../utils/Constants"
 
 const AddSlot = () => {    
     const employeeId = useSelector((state: RootState) => state.employee.employeeInstance?.id)
@@ -17,7 +18,7 @@ const AddSlot = () => {
 
     return (
         <SlotForm 
-        url={`http://localhost:8000/emp/slot/${employeeId}`}
+        url={`${BASE_URL}/emp/slot/${employeeId}`}
         type="ADD"
         initialNotes="" initialScheduledAt="" initialVenue=""/>
     )

@@ -1,11 +1,12 @@
 import axios from "axios"
+import { BASE_URL } from "../utils/Constants"
 import React, {useState} from "react"
  
 const VenueAdd = () => {
 
     const addVenue = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        axios.post("http://localhost:8000/org/venue", {name, location} )
+        axios.post(`${BASE_URL}/org/venue`, {name, location} )
         .then((result)=>{
             console.log(result)
         })

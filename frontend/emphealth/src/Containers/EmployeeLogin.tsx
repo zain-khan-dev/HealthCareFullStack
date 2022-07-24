@@ -4,6 +4,7 @@ import axios from "axios"
 import { Employee } from "../utils/schema"
 import { useDispatch } from "react-redux"
 import { setEmployee } from "../reducer/EmployeeSlice"
+import { BASE_URL } from "../utils/Constants"
 
 const EmployeePanel = () => {
 
@@ -26,7 +27,7 @@ const EmployeePanel = () => {
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/emp/")
+        axios.get(`${BASE_URL}/emp/`)
         .then((result)=>{
             setEmployeeList(result.data)
             setEmployeeId(result.data[0].id)

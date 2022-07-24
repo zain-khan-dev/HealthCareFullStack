@@ -4,7 +4,7 @@ import { SlotSchema } from "../utils/schema"
 import {useDispatch, useSelector} from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { RootState } from "../store"
-import {EMPLOYEE, COMPLETED} from "../utils/Constants"
+import {EMPLOYEE, COMPLETED, BASE_URL} from "../utils/Constants"
 import {setSlotInstances} from "../reducer/SlotSlice"
 
 interface Props {
@@ -27,7 +27,7 @@ const Slot:React.FC<Props> = ({type}) => {
     const SlotEmpFunc:React.FC<EmpFuncProps> = ({slot}) => {
 
         const deleteSlot = (slotId:string) => {
-            axios.delete(`http://localhosT:8000/emp/slot/${slotId}`)
+            axios.delete(`${BASE_URL}/emp/slot/${slotId}`)
             .then((result)=>{
                 setSlots(slots.filter((slot)=>slot.id !== slotId))
                 console.log("Deleted successfully" + result)
@@ -54,7 +54,7 @@ const Slot:React.FC<Props> = ({type}) => {
 
         const updateStatus = (e:React.MouseEvent<HTMLButtonElement>) => {
             console.log("Update the status of slot "+ slot.id)
-            axios.patch(`http://localhost:8000/org/slots/${slot.id}`)
+            axios.patch(`${BASE_URL}/org/slots/${slot.id}`)
             .then((result)=>{
                 console.log(result)
                 const filteredSlots = slots.filter((slotInstance)=> slotInstance.id !== slot.id)
@@ -109,7 +109,7 @@ const Slot:React.FC<Props> = ({type}) => {
 
     useEffect(()=>{
         if(type === EMPLOYEE)
-            axios.get(`http://localhost:8000/emp/slots/${employeeId}`)
+            axios.get(`${BASE_URL}/emp/slots/${employeeId}`)
             .then((result)=>{
                 dispatch(setSlotInstances(result.data))
                 console.log(result)
@@ -117,7 +117,7 @@ const Slot:React.FC<Props> = ({type}) => {
                 setSlots(result.data)
             })
         else{
-            axios.get(`http://localhost:8000/org/slots`)
+            axios.get(`${BASE_URL}/org/slots`)
             .then((result)=>{
                 console.log(result)
                 setAllSlots(result.data)

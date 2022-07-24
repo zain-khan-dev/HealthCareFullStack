@@ -3,7 +3,7 @@ import { Venue } from "../utils/schema"
 import axios from "axios"
 import {EMPLOYEE, ORGANISATION} from "../utils/Constants"
 import { useNavigate } from "react-router-dom"
-
+import {BASE_URL} from "../utils/Constants"
 interface Props {
     type:string
 }
@@ -16,7 +16,7 @@ const VenueList:React.FC<Props>  = ({type}) => {
     const navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/emp/venues")
+        axios.get(`${BASE_URL}/emp/venues`)
         .then((result)=>{
             setVenues(result.data)  
         })
@@ -26,7 +26,7 @@ const VenueList:React.FC<Props>  = ({type}) => {
     }, [])
 
     const deleteVenue = (venueId:string) => {
-        axios.delete(`http://localhost:8000/org/venue/${venueId}`)
+        axios.delete(`${BASE_URL}/org/venue/${venueId}`)
         .then((result)=>{
             console.log(result)
             setVenues(venues.filter((venue)=>venue.id !== venueId))
