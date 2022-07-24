@@ -9,6 +9,7 @@ import AddSlot from "./Containers/AddSlot";
 import EmployeeOps from "./Containers/EmployeeOps";
 import { EMPLOYEE, ORGANISATION } from "./utils/Constants";
 import UpdateSlot from "./Containers/UpdateSlot"
+import EmployeeCreate from "./Containers/EmployeeCreate"
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/employee/panel" element={<EmployeeOps />} />
           <Route path="/employee/venue" element={<VenueList type={EMPLOYEE} />} />
           <Route path="/employee/slot" element={<Slot type={EMPLOYEE} />} />
+          <Route path="/employee/create" element={<EmployeeCreate />} />
           <Route path="/employee/slot/add" element={<AddSlot />} />
           <Route path="/employee/slot/update/:slotId" element={<UpdateSlot />} />
           <Route path="/organisation" element={<OrganisationPanel />} />

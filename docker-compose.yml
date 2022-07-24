@@ -37,7 +37,7 @@ services:
     container_name: emphealth-react-client
     command: npm start
     volumes:
-      - ./frontend/:/usr/app
+      - ./frontend/emphealth:/usr/app
       - /usr/app/node_modules
     depends_on:
       - server

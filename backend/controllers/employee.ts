@@ -20,6 +20,20 @@ router.get("/venues", async (req, res)=>{
     res.status(200).json(allVenues)
 })
 
+
+router.post("/", async (req, res)=>{
+    try {
+        const {name, age} = req.body
+        const employee = new EmployeeModel({name, age})
+        const savedEmployee = await employee.save()
+        res.status(200).json(savedEmployee)
+    }
+    catch(err) {
+        console.log(err)
+        res.status(400).send(err)
+    }
+})
+
 router.get("/slots/:empId", async (req, res)=>{
     try{
         const allSlots = await EmployeeSlotModel.find({employeeId:new mongoose.Types.ObjectId(req.params.empId)}).populate("venueId")

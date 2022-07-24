@@ -26,6 +26,18 @@ router.get("/venues", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const allVenues = yield checkupvenue_1.default.find({}).select("id name location");
     res.status(200).json(allVenues);
 }));
+router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, age } = req.body;
+        const employee = new employee_1.default({ name, age });
+        const savedEmployee = yield employee.save();
+        res.status(200).json(savedEmployee);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+    }
+}));
 router.get("/slots/:empId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const allSlots = yield employeeslot_1.default.find({ employeeId: new mongoose_1.default.Types.ObjectId(req.params.empId) }).populate("venueId");

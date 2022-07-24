@@ -30,19 +30,20 @@ const EmployeePanel = () => {
         axios.get(`${BASE_URL}/emp/`)
         .then((result)=>{
             setEmployeeList(result.data)
+            if(result.data.length > 0)
             setEmployeeId(result.data[0].id)
         })
         .catch((err)=>{
             console.log(err)
         })
-    })
-    if(employeeList.length == 0){
-        return <div>Loading</div>
-    }
-    else{
+    }, [])
 
         return (
             <div className="mx-auto flex flex-col w-fit ">
+                <button 
+                className="px-3 py-2 bg-yellow-600 my-2 text-white"
+                onClick={(e)=>navigate("/employee/create")}>Create New Employee</button>
+                <div className="mx-auto text-center text-2xl font-bold">OR</div>
                 <div className="w-fit mx-auto text-2xl">Choose the employee to login with</div>
                 <select value={employeeId} onChange={(e)=>setEmployeeId(e.target.value)}>
                     {employeeList.map((employee)=><option className="px-2 py-3" value={employee.id}>{employee.name}</option>)}
@@ -50,8 +51,6 @@ const EmployeePanel = () => {
                 <button onClick={login} className="px-3 py-2 bg-green-500 mt-4">Login</button>
             </div>
         )
-    }
-
 }
 
 export default EmployeePanel
