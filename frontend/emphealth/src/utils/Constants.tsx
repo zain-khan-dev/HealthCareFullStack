@@ -1,0 +1,3 @@
+export const EMPLOYEE = "EMPLOYEE"
+export const ORGANISATION = "ORGANISATION"
+export const COMPLETED="COMPLETED"
